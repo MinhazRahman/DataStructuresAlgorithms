@@ -15,20 +15,20 @@ public class SelectionSort {
         int n = arr.length;
         for (int j = 0; j < n-1; j++){
             int i = j+1;
-            int smallest = arr[j];
-            int indexOfSmallest = j;
+            int min = arr[j];
+            int indexOfMin = j;
             // find the smallest element in the sub-array arr[j+1...n-1]
             while (i <= n-1){
-                if (arr[i] < smallest) {
-                    smallest = arr[i];
-                    indexOfSmallest = i;
+                if (arr[i] < min) {
+                    min = arr[i];
+                    indexOfMin = i;
                 }
                 i = i+1; // move pointer to the next element
             }
 
             // swap arr[j] and the smallest element
-            arr[indexOfSmallest]= arr[j];
-            arr[j] = smallest;
+            arr[indexOfMin]= arr[j];
+            arr[j] = min;
 
             // check what actually happens on each iteration
             System.out.println(Arrays.toString(arr));

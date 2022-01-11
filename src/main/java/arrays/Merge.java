@@ -46,7 +46,7 @@ public class Merge {
 
         // Merge the elements of L and R into A[p...r]
         int i = 0, j = 0;
-        for (int k = 0; k < A.length; k++){
+        for (int k = p; k <= r; k++){
             if (L[i] <= R[j]){
                 A[k] = L[i];
                 i++;

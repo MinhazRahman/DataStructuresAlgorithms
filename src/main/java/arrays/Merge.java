@@ -45,14 +45,15 @@ public class Merge {
         R[nr] = Integer.MAX_VALUE;
 
         // Merge the elements of L and R into A[p...r]
+        // Copy all the elements of L and R into A
         int i = 0, j = 0;
         for (int k = p; k <= r; k++){
             if (L[i] <= R[j]){
-                A[k] = L[i];
+                A[k] = L[i]; // Copy the elements of L into A
                 i++;
             }
             else { // R[j] < L[i]
-                A[k] = R[j];
+                A[k] = R[j]; // Copy the elements of R into A
                 j++;
             }
         }

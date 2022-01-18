@@ -13,6 +13,7 @@ public class MergeTwoSortedArrays {
         int i = 0, j = 0;
 
         for (int k = 0; k < C.length; k++){
+            // Copy the elements of A or B into C
             if (i < A.length && j < B.length){
                 if (A[i] < B[j]){
                     C[k] = A[i];
@@ -23,11 +24,12 @@ public class MergeTwoSortedArrays {
                 }
             }
             else {
+                // Copy the elements of A into C
                 if (i < A.length){
                     C[k] = A[i];
                     i++;
                 }
-                else { // j < B.length
+                else { // j < B.length, Copy the elements of B into C
                     C[k] = B[j];
                     j++;
                 }

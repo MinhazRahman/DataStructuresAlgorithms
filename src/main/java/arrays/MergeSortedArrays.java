@@ -12,7 +12,8 @@ public class MergeSortedArrays {
         int[] C = new int[A.length + B.length];
         int i = 0, j = 0, k = 0;
 
-        // Copy all the elements of either A or B into C
+        // Merge the elements of A and B into C
+        // 1. Copy all the elements of either A or B into C
         while (i < A.length && j < B.length){
             if (A[i] < B[j]){
                 C[k] = A[i];
@@ -24,14 +25,14 @@ public class MergeSortedArrays {
             k++;
         }
 
-        // Copy all the elements of A into C
+        // 2. Copy all the remaining elements of A into C
         while (i < A.length){
             C[k] = A[i];
             i++;
             k++;
         }
 
-        // Copy all the elements of B into C
+        // 3. Copy all the remaining elements of B into C
         while (j < B.length){
             C[k] = B[j];
             j++;

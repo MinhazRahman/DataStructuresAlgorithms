@@ -103,6 +103,36 @@ public class LinkedListsOperations {
         return x > head.data? x:head.data; // Math.max(x, head.data);
     }
 
+    // Search node in a linked list
+    public static Node search(Node head, int key){
+        Node node = head;
+
+        while (node != null){
+            if (node.data == key){
+                return node;
+            }
+            node = node.next;
+        }
+        return null;
+    }
+
+    // Search node in a linked list recursively
+    public static Node searchRecur(Node node, int key){
+
+        // base cases
+        if (node == null){
+            return null;
+        }
+        if (node.data == key){
+            return node;
+        }
+
+        // recursive step
+        return searchRecur(node.next, key);
+    }
+
+    // Improve linear search through 1) Move Node to Head: two pointer method
+
 
     public static void main(String[] args) {
         // Form a Linked lists
@@ -125,23 +155,7 @@ public class LinkedListsOperations {
         display(head);
         System.out.println();
 
-        display(B);
-        System.out.println();
-
-        displayRecursively(head);
-        System.out.println();
-
-        displayInReverseOrder(head);
-
-        // count the number of nodes in a list
-        System.out.println(countNodes(head));
-        System.out.println(getCount(head));
-        System.out.println(sumOfNodValues(head));
-        System.out.println(sum(head));
-
-        System.out.println(maximum(head));
-
-        System.out.println(maximumRecursive(head));
+        System.out.println(searchRecur(head, 60));
 
     }
 }

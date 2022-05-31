@@ -133,6 +133,75 @@ public class LinkedListsOperations {
 
     // Improve linear search through 1) Move Node to Head: two pointer method
 
+    // Return the next node of the matching node
+    public static Node nextNode(Node head, int key){
+        Node node = head;
+
+        while (node != null){
+            if (node.data == key){
+                return node.next;
+            }
+            node = node.next;
+        }
+        return null;
+    }
+
+    // Return the previous node of the matching node
+    public static Node previousNode(Node node, int key){
+        Node previous = new Node();
+
+        while (node != null){
+            if (node.data == key){
+                return previous;
+            }
+            previous = node;
+            node = node.next;
+        }
+        return null;
+    }
+
+    // Delete the matching node from the list
+    public static Node deleteNode(Node head, int key){
+        Node previous = new Node();
+        Node node = head;
+
+        while (node != null){
+            if (node.data == key){ // delete the matching node
+
+                // previous node of the matching node points to the next node of the matching node
+                previous.next = node.next;
+                // After this line, there is no pointer to the matching node
+
+                return node;
+            }
+            previous = node;
+            node = node.next;
+        }
+        return null;
+    }
+
+    // Move the matching node to the first position in the list
+    public static Node moveToHead(Node head, int key){
+        Node previous = new Node();
+        Node node = head;
+
+        while (node != null){
+            if (node.data == key){
+
+                // previous node of the matching node points to the next node of the matching node
+                previous.next = node.next;
+                // After this line, there is no pointer to the matching node
+
+                node.next = head; // the next pointer of matching node points to the old first node
+                head = node; // head points to the matching node/new first node
+
+                return head;
+            }
+            previous = node;
+            node = node.next;
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         // Form a Linked lists
@@ -144,18 +213,22 @@ public class LinkedListsOperations {
         Node B = new Node(20);
         Node C = new Node(30);
         Node D = new Node(40);
+        Node E = new Node(50);
+        Node F = new Node(60);
 
-        // Form the linked list as: head -> A -> B -> C -> D
+        // Form the linked list as: head -> A -> B -> C -> D -> E -> F -> null
         head = A;
         A.next = B;
         B.next = C;
         C.next = D;
+        D.next = E;
+        E.next = F;
 
         // operations
         display(head);
         System.out.println();
 
-        System.out.println(searchRecur(head, 60));
-
+        Node newHead =  moveToHead(head, 30);
+        display(newHead);
     }
 }

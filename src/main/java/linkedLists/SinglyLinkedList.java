@@ -57,6 +57,14 @@ public class SinglyLinkedList {
         return null;
     }
 
+    // delete the first node from the list
+    public void deleteFirst(){
+        Node oldFirst = head;
+
+        head = head.next;  // old second node is now the new first node
+        oldFirst.next = null; // old first node now points to null
+    }
+
     // Move the matching node to the first position in the list
     public Node moveToFront(int key){
         Node previous = new Node();

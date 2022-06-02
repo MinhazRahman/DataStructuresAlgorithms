@@ -16,7 +16,6 @@ public class App {
         singlyLinkedList.insertInSortedList(5);
         singlyLinkedList.insertInSortedList(35);
 
-
         singlyLinkedList.display();
 
     }

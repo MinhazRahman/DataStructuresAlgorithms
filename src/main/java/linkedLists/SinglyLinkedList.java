@@ -1,20 +1,30 @@
 package linkedLists;
 
-public class LinkedListOperations {
+public class SinglyLinkedList {
+    // A pointer of type Node, that points to the first node
+    Node head;
+
+    // constructor
+    public SinglyLinkedList(){}
+
+    public boolean isEmpty(){
+        return head == null;
+    }
 
     // display the list using iterative method
-    public static void display(Node head){
+    public void display(){
+        System.out.println("First-->Last");
         // create a new node that points to the same node
         // that the head node points to
-        Node node = head;
-        while (node != null){
-            System.out.println(node);
-            node = node.next;
+        Node current = head;
+        while (current != null){
+            System.out.println(current);
+            current = current.next;
         }
     }
 
     // Counting Nodes in a list iteratively
-    public static int countNodes(Node head){
+    public int countNodes(){
         int count = 0;
         // create a new node that points to the same node that
         // the head points to
@@ -27,7 +37,7 @@ public class LinkedListOperations {
     }
 
     // Delete the matching node from the list
-    public static Node deleteNode(Node head, int key){
+    public Node deleteNode(int key){
         Node previous = new Node();
         Node node = head;
 
@@ -47,7 +57,7 @@ public class LinkedListOperations {
     }
 
     // Move the matching node to the first position in the list
-    public static Node moveToFront(Node head, int key){
+    public Node moveToFront(int key){
         Node previous = new Node();
         Node node = head;
 
@@ -70,14 +80,10 @@ public class LinkedListOperations {
     }
 
     // Insert into the front of the list
-    public static Node insertFirst(Node head, int data){
+    public Node insertFirst(int data){
         // create the new node
         Node node = new Node(data);
 
-        if (head == null){
-            head = node;
-            return head;
-        }
         // next pointer of the new node will point to the old first node
         node.next = head;
         // head of the list points to the new node
@@ -85,16 +91,12 @@ public class LinkedListOperations {
         return head;
     }
 
-    // Insert a node at a particular position
-    public static Node insertAt(Node head, int data, int pos){
-        if (pos > countNodes(head)){
-            return head;
-        }
+    // Insert a node after a given position
+    public Node insert(int data, int pos){
 
         // create a new node
         Node node = new Node(data);
-        Node current = head;
-        int count = 1; // keep record of the number of traversed nodes
+        Node current = head; // at this point, current and head both points to the first node
 
         if (pos == 0){ // insert node at the front
             // next pointer of the new node will point to the old first node
@@ -104,45 +106,21 @@ public class LinkedListOperations {
             return head;
         }
 
-        // traverse the list till node count == pos
-        while (count < pos){
+        // keep record of the number of times we have to loop through
+        // since we are already at first node, so initialize the count to 1
+        int count = 1;
+
+        // keep moving the pointer current
+        while (count < pos && current.next != null){
             current = current.next;
             count++;
         }
 
         // insert the new node
+        assert current != null;
         node.next = current.next;
         current.next = node;
 
         return head;
-    }
-
-    public static void main(String[] args) {
-        // Form a Linked lists
-        // Define the head node
-        Node head = new Node();
-
-        // Define the intermediate nodes
-        Node A = new Node(10);
-        Node B = new Node(20);
-        Node C = new Node(30);
-        Node D = new Node(40);
-        Node E = new Node(50);
-        Node F = new Node(60);
-
-        // Form the linked list as: head -> A -> B -> C -> D -> E -> F -> null
-        head = A;
-        A.next = B;
-        B.next = C;
-        C.next = D;
-        D.next = E;
-        E.next = F;
-
-        // operations
-        display(head);
-        System.out.println();
-
-        Node newHead =  insertAt(head, 55, 5);
-        display(newHead);
     }
 }

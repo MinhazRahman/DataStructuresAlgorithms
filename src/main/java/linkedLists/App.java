@@ -12,12 +12,10 @@ public class App {
         // print the list
         singlyLinkedList.display();
 
-        singlyLinkedList.insert(25, 2);
-        singlyLinkedList.insert(35, 4);
-        singlyLinkedList.insert(15, 1);
-        singlyLinkedList.insertFirst(5);
-        singlyLinkedList.insertLast(40);
-        singlyLinkedList.insertFirst(4);
+        singlyLinkedList.insertInSortedList(25);
+        singlyLinkedList.insertInSortedList(5);
+        singlyLinkedList.insertInSortedList(35);
+
 
         singlyLinkedList.display();
 

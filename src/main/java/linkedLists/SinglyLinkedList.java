@@ -143,4 +143,38 @@ public class SinglyLinkedList {
         }
         tail = node;
     }
+
+    // Insert in a sorted list
+    public Node insertInSortedList(int data){
+        // create the new node
+        Node node = new Node(data);
+
+        // if the list is empty
+        if (head == null){
+            head = node;
+            return head;
+        }
+
+        // if data is smaller than the data of the first node
+        // then, insert before the first node
+        if (node.data < head.data){
+            node.next = head;
+            head = node;
+            return head;
+        }
+
+        Node previous = null;
+        Node current = head;
+        while (current != null && current.data < data){
+            previous = current;
+            current = current.next;
+        }
+
+        // insert the node
+        node.next = current;
+        assert previous != null;
+        previous.next = node;
+
+        return head;
+    }
 }

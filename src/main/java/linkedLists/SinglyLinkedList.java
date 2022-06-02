@@ -3,6 +3,7 @@ package linkedLists;
 public class SinglyLinkedList {
     // A pointer of type Node, that points to the first node
     Node head;
+    Node tail;
 
     // constructor
     public SinglyLinkedList(){}
@@ -84,10 +85,15 @@ public class SinglyLinkedList {
         // create the new node
         Node node = new Node(data);
 
-        // next pointer of the new node will point to the old first node
-        node.next = head;
-        // head of the list points to the new node
+        if (head == null){ // when the list is empty
+            tail = node;
+        }else {
+            // next pointer of the new node will point to the old first node
+            node.next = head;
+        }
+        // head of the list points to the new node/first node
         head = node;
+
         return head;
     }
 
@@ -122,5 +128,19 @@ public class SinglyLinkedList {
         current.next = node;
 
         return head;
+    }
+
+    // Insert a node at the end of a linked list
+    public void insertLast(int data){
+        // create a new node
+        Node node = new Node(data);
+
+        if (head == null){ // when the list is empty,
+            head = node;
+        }
+        else {
+            tail.next = node;
+        }
+        tail = node;
     }
 }

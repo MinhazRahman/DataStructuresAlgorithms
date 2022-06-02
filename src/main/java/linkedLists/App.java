@@ -5,9 +5,9 @@ public class App {
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
 
         // create lists
-        singlyLinkedList.insertFirst(30);
-        singlyLinkedList.insertFirst(20);
-        singlyLinkedList.insertFirst(10);
+        singlyLinkedList.insertLast(10);
+        singlyLinkedList.insertLast(20);
+        singlyLinkedList.insertLast(30);
 
         // print the list
         singlyLinkedList.display();
@@ -15,6 +15,10 @@ public class App {
         singlyLinkedList.insert(25, 2);
         singlyLinkedList.insert(35, 4);
         singlyLinkedList.insert(15, 1);
+        singlyLinkedList.insertFirst(5);
+        singlyLinkedList.insertLast(40);
+        singlyLinkedList.insertFirst(4);
+
         singlyLinkedList.display();
 
     }

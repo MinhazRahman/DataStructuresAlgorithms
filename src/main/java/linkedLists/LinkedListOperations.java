@@ -1,6 +1,6 @@
 package linkedLists;
 
-public class LinkedListsOperations {
+public class LinkedListOperations {
 
     // display the list using iterative method
     public static void display(Node head){
@@ -11,29 +11,6 @@ public class LinkedListsOperations {
             System.out.println(node);
             node = node.next;
         }
-    }
-
-    // display the node using recursive method
-    public static void displayRecursively(Node node){
-        // base case
-        if (node == null){
-            return;
-        }
-        // recursive step
-        System.out.println(node);
-        displayRecursively(node.next);
-    }
-
-    // display the nodes in reverse order using recursive method
-    // This will change the head: head will no longer point to the first node
-    public static void displayInReverseOrder(Node node){
-        // base case
-        if (node == null){
-            return;
-        }
-        // recursive step
-        displayInReverseOrder(node.next);
-        System.out.println(node);
     }
 
     // Counting Nodes in a list iteratively
@@ -47,117 +24,6 @@ public class LinkedListsOperations {
             node = node.next;
         }
         return count;
-    }
-
-    // Counting Nodes in a list recursively
-    // This will change the head: head will no longer point to the first node
-    public static int getCount(Node node){
-        // base case
-        if (node == null){
-            return 0;
-        }
-        // recursive step
-        return 1 + getCount(node.next);
-    }
-
-    // Sum of all the nodes in the list
-    public static int sumOfNodValues(Node head){
-        int sum = 0;
-        Node node = head;
-        while (node != null){
-            sum += node.data;
-            node = node.next;
-        }
-        return sum;
-    }
-
-    // Sum of all the nodes in the list
-    public static int sum(Node node){
-        // base case
-        if (node == null){
-            return 0;
-        }
-        // recursive step
-        return node.data + sum(node.next);
-    }
-
-    // Find the maximum value in the list
-    public static int maximum(Node head){
-        int max = Integer.MIN_VALUE;
-        while (head != null){
-           if (head.data > max){
-               max = head.data;
-           }
-           head = head.next;
-        }
-        return max;
-    }
-
-    // Find the maximum value in the list using recursion
-    public static int maximumRecursive(Node head){
-        int x = 0;
-        if (head == null){
-            return Integer.MIN_VALUE;
-        }
-        x = maximumRecursive(head.next);
-        return x > head.data? x:head.data; // Math.max(x, head.data);
-    }
-
-    // Search node in a linked list
-    public static Node search(Node head, int key){
-        Node node = head;
-
-        while (node != null){
-            if (node.data == key){
-                return node;
-            }
-            node = node.next;
-        }
-        return null;
-    }
-
-    // Search node in a linked list recursively
-    public static Node searchRecur(Node node, int key){
-
-        // base cases
-        if (node == null){
-            return null;
-        }
-        if (node.data == key){
-            return node;
-        }
-
-        // recursive step
-        return searchRecur(node.next, key);
-    }
-
-    // Improve linear search through 1) Move Node to Head: two pointer method
-
-    // Return the next node of the matching node
-    public static Node nextNode(Node head, int key){
-        Node node = head;
-
-        while (node != null){
-            if (node.data == key){
-                return node.next;
-            }
-            node = node.next;
-        }
-        return null;
-    }
-
-    // Return the previous node of the matching node
-    public static Node previousNode(Node node, int key){
-        Node previous = new Node();
-
-        while (node != null){
-            if (node.data == key){
-                return previous;
-            }
-            previous = node;
-            node = node.next;
-        }
-        return null;
     }
 
     // Delete the matching node from the list
@@ -203,6 +69,54 @@ public class LinkedListsOperations {
         return null;
     }
 
+    // Insert into the front of the list
+    public static Node insertFirst(Node head, int data){
+        // create the new node
+        Node node = new Node(data);
+
+        if (head == null){
+            head = node;
+            return head;
+        }
+        // next pointer of the new node will point to the old first node
+        node.next = head;
+        // head of the list points to the new node
+        head = node;
+        return head;
+    }
+
+    // Insert a node at a particular position
+    public static Node insertAt(Node head, int data, int pos){
+        if (pos > countNodes(head)){
+            return head;
+        }
+
+        // create a new node
+        Node node = new Node(data);
+        Node current = head;
+        int count = 1; // keep record of the number of traversed nodes
+
+        if (pos == 0){ // insert node at the front
+            // next pointer of the new node will point to the old first node
+            node.next = head;
+            // head of the list points to the new node
+            head = node;
+            return head;
+        }
+
+        // traverse the list till node count == pos
+        while (count < pos){
+            current = current.next;
+            count++;
+        }
+
+        // insert the new node
+        node.next = current.next;
+        current.next = node;
+
+        return head;
+    }
+
     public static void main(String[] args) {
         // Form a Linked lists
         // Define the head node
@@ -228,7 +142,7 @@ public class LinkedListsOperations {
         display(head);
         System.out.println();
 
-        Node newHead =  moveToFront(head, 30);
+        Node newHead =  insertAt(head, 55, 5);
         display(newHead);
     }
 }

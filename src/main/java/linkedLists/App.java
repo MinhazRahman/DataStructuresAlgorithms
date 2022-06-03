@@ -12,10 +12,13 @@ public class App {
         singlyLinkedList.insertLast(5);
         singlyLinkedList.insertLast(6);
         singlyLinkedList.insertLast(7);
+        singlyLinkedList.insertLast(8);
 
         singlyLinkedList.display();
-        singlyLinkedList.printOddNodes();
-        singlyLinkedList.printEvenNodes();
+        // Node newHead = singlyLinkedList.listOfOddNodes();
+        // singlyLinkedList.display(newHead);
+       Node evenHead  = singlyLinkedList.listOfEvenNodes();
+       singlyLinkedList.display(evenHead);
 
     }
 }

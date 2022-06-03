@@ -24,6 +24,18 @@ public class SinglyLinkedList {
         }
     }
 
+    // display the list using iterative method
+    public void display(Node node){
+        System.out.println("First-->Last");
+        // create a new node that points to the same node
+        // that the head node points to
+        Node current = node;
+        while (current != null){
+            System.out.println(current);
+            current = current.next;
+        }
+    }
+
     // Counting Nodes in a list iteratively
     public int countNodes(){
         int count = 0;
@@ -188,33 +200,54 @@ public class SinglyLinkedList {
 
     // print the odd nodes
     // The first node is considered odd, and the second node is even, and so on.
-    public void printOddNodes(){
-        System.out.println("Odd nodes: First-->Last");
+    public Node listOfOddNodes(){
+        Node oddHead = head;
         Node odd = head;
 
         while (odd != null && odd.next != null){
-            System.out.println(odd);
-            odd = odd.next.next;
+            odd.next = odd.next.next;
+            odd = odd.next;
         }
-        if (odd != null){
-            System.out.println(odd);
-        }
+
+        return oddHead;
     }
 
     // print the even nodes
     // The first node is considered odd, and the second node is even, and so on.
-    public void printEvenNodes(){
-        System.out.println("Even nodes: First-->Last");
+    public Node listOfEvenNodes(){
+        Node evenHead = head.next;
         Node even = head.next;
 
         while (even != null && even.next != null){
-            System.out.println(even);
-            even = even.next.next;
+            even.next = even.next.next;
+            even = even.next;
         }
-        if (even != null){
-            System.out.println(even);
+        return evenHead;
+    }
+
+    // interleave odds and evens
+    public Node oddsEvens(){
+        if (head == null || head.next == null){
+            return head;
         }
 
+        Node odd = head;
+        Node even = head.next;
+        Node headEven = even;
+
+        while (odd != null && even != null){
+            odd = odd.next.next;
+            even = even.next.next;
+        }
+
+        if (even != null){
+            even.next = null;
+        }
+        if (odd != null){
+            odd.next = headEven;
+        }
+
+        return head;
     }
 
 }

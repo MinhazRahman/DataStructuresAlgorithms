@@ -235,9 +235,12 @@ public class SinglyLinkedList {
         Node even = head.next;
         Node headEven = even;
 
-        while (odd != null && even != null){
-            odd = odd.next.next;
-            even = even.next.next;
+        while (odd != null && odd.next != null && even != null && even.next != null){
+            odd.next = odd.next.next;
+            odd = odd.next;
+
+            even.next = even.next.next;
+            even = even.next;
         }
 
         if (even != null){

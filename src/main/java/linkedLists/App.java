@@ -17,8 +17,10 @@ public class App {
         singlyLinkedList.display();
         // Node newHead = singlyLinkedList.listOfOddNodes();
         // singlyLinkedList.display(newHead);
-       Node evenHead  = singlyLinkedList.listOfEvenNodes();
-       singlyLinkedList.display(evenHead);
+       // Node evenHead  = singlyLinkedList.listOfEvenNodes();
+       // singlyLinkedList.display(evenHead);
+        Node newHead = singlyLinkedList.oddsEvens();
+        singlyLinkedList.display(newHead);
 
     }
 }

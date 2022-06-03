@@ -185,4 +185,36 @@ public class SinglyLinkedList {
 
         return head;
     }
+
+    // print the odd nodes
+    // The first node is considered odd, and the second node is even, and so on.
+    public void printOddNodes(){
+        System.out.println("Odd nodes: First-->Last");
+        Node odd = head;
+
+        while (odd != null && odd.next != null){
+            System.out.println(odd);
+            odd = odd.next.next;
+        }
+        if (odd != null){
+            System.out.println(odd);
+        }
+    }
+
+    // print the even nodes
+    // The first node is considered odd, and the second node is even, and so on.
+    public void printEvenNodes(){
+        System.out.println("Even nodes: First-->Last");
+        Node even = head.next;
+
+        while (even != null && even.next != null){
+            System.out.println(even);
+            even = even.next.next;
+        }
+        if (even != null){
+            System.out.println(even);
+        }
+
+    }
+
 }

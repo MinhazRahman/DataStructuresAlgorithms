@@ -5,18 +5,17 @@ public class App {
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
 
         // create lists
-        singlyLinkedList.insertLast(10);
-        singlyLinkedList.insertLast(20);
-        singlyLinkedList.insertLast(30);
-
-        // print the list
-        singlyLinkedList.display();
-
-        singlyLinkedList.insertInSortedList(25);
-        singlyLinkedList.insertInSortedList(5);
-        singlyLinkedList.insertInSortedList(35);
+        singlyLinkedList.insertLast(1);
+        singlyLinkedList.insertLast(2);
+        singlyLinkedList.insertLast(3);
+        singlyLinkedList.insertLast(4);
+        singlyLinkedList.insertLast(5);
+        singlyLinkedList.insertLast(6);
+        singlyLinkedList.insertLast(7);
 
         singlyLinkedList.display();
+        singlyLinkedList.printOddNodes();
+        singlyLinkedList.printEvenNodes();
 
     }
 }

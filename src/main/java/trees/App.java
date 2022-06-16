@@ -34,5 +34,9 @@ public class App {
         System.out.println("Post order traversal(left, right, node): ");
         tree.postOrder(a);
 
+        // count the number of leaves in a tree
+        System.out.println("Number of leaves: " + tree.countLeaves(a));
+
+
     }
 }

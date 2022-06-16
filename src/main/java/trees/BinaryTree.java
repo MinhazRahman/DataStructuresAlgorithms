@@ -53,4 +53,18 @@ public class BinaryTree {
 
         return 1 + countNodes(node.left) + countNodes(node.right);
     }
+
+    // In a tree, a node is a leaf if it doesn't have any left child or any right child;
+    public int countLeaves(Node node){
+        // base case
+        if (node == null){
+            return 0;
+        }
+        if (node.left == null && node.right == null){
+            return 1;
+        }
+
+        // recursive step
+        return countLeaves(node.left) +  countLeaves(node.right);
+    }
 }

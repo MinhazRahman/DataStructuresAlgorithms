@@ -1,5 +1,8 @@
 package trees;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree {
     Node root;
 
@@ -46,6 +49,28 @@ public class BinaryTree {
         System.out.println(node);
     }
 
+    // level order traversal
+    public void levelOrder(Node root){
+        Queue<Node> queue = new LinkedList<>();
+
+        if (root != null){
+            queue.add(root);
+        }else {
+            return;
+        }
+
+        while (!queue.isEmpty()){
+            Node node = queue.poll();
+            System.out.println(node);
+            if (node.left != null){
+                queue.add(node.left);
+            }
+            if (node.right != null){
+                queue.add(node.right);
+            }
+        }
+    }
+
     public int countNodes(Node node){
         if (node == null){
             return 0;
@@ -66,5 +91,21 @@ public class BinaryTree {
 
         // recursive step
         return countLeaves(node.left) +  countLeaves(node.right);
+    }
+
+    // A binary tree is strict is every node has o or 2 child nodes.
+    public boolean isStrict(Node root) {
+        if(root == null){
+            return true;
+        }
+        else if(root.left == null && root.right == null){
+            return true;
+        }else if(root.left != null && root.right == null){
+            return false;
+        }else if(root.left == null){
+            return false;
+        }
+
+        return isStrict(root.left) && isStrict(root.right);
     }
 }

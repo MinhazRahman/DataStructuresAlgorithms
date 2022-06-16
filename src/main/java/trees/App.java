@@ -34,9 +34,14 @@ public class App {
         System.out.println("Post order traversal(left, right, node): ");
         tree.postOrder(a);
 
+        System.out.println("Level order traversal: ");
+        tree.levelOrder(a);
+
         // count the number of leaves in a tree
         System.out.println("Number of leaves: " + tree.countLeaves(a));
 
+        // check if a binary tree is balanced or not
+        System.out.println("Is balanced?" + tree.isStrict(a));
 
     }
 }

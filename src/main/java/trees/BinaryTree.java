@@ -93,6 +93,48 @@ public class BinaryTree {
         return countLeaves(node.left) +  countLeaves(node.right);
     }
 
+    // In a tree, a node is a leaf if it doesn't have any left child or any right child;
+    public int sumOfLeaves(Node node){
+        // base case
+        if (node == null){
+            return 0;
+        }
+        if (node.left == null && node.right == null){
+            return node.data;
+        }
+
+        // recursive step
+        return sumOfLeaves(node.left) +  sumOfLeaves(node.right);
+    }
+
+    // In a tree, a node is a leaf if it doesn't have any left child or any right child;
+    public int sumOfLeftLeaves(Node node){
+        // base case
+        if (node == null){
+            return 0;
+        }
+        if (node.left != null && node.left.left == null && node.left.right == null){
+            return node.left.data;
+        }
+
+        // recursive step
+        return sumOfLeftLeaves(node.left) +  sumOfLeftLeaves(node.right);
+    }
+
+    // In a tree, a node is a leaf if it doesn't have any left child or any right child;
+    public int sumOfRightLeaves(Node node){
+        // base case
+        if (node == null){
+            return 0;
+        }
+        if (node.right != null && node.right.left == null && node.right.right == null){
+            return node.right.data;
+        }
+
+        // recursive step
+        return sumOfRightLeaves(node.left) +  sumOfRightLeaves(node.right);
+    }
+
     // A binary tree is strict is every node has o or 2 child nodes.
     public boolean isStrict(Node root) {
         if(root == null){

@@ -40,8 +40,14 @@ public class App {
         // count the number of leaves in a tree
         System.out.println("Number of leaves: " + tree.countLeaves(a));
 
-        // check if a binary tree is balanced or not
-        System.out.println("Is balanced?" + tree.isStrict(a));
+        // sum of all the leaves
+        System.out.println("Sum of leaves: " + tree.sumOfLeaves(a));
+
+        // sum of all the left leaves
+        System.out.println("Sum of left leaves: " + tree.sumOfLeftLeaves(a));
+
+        // sum of all the right leaves
+        System.out.println("Sum of right leaves: " + tree.sumOfRightLeaves(a));
 
     }
 }

@@ -10,6 +10,36 @@ public class BinaryTree {
 
     }
 
+    // count the number of nodes in a binary tree
+    public int count(Node node){
+        int x, y;
+
+        // recursive steps
+        if (node != null){
+            x = count(node.left);
+            y = count(node.right);
+
+            return  x + y + 1;
+        }
+        // base case
+        return 0;
+    }
+
+    // count the number of nodes
+    public int countNode(Node node){
+        int x, y;
+
+        if (node == null){
+            return 0;
+        }
+
+        x = countNode(node.left);
+        y = countNode(node.right);
+
+        return x + y + 1;
+
+    }
+
     // pre order traversal: visit(node), preOrder(left), preOrder(right)
     public void preOrder(Node node){
         // base case
@@ -149,5 +179,28 @@ public class BinaryTree {
         }
 
         return isStrict(root.left) && isStrict(root.right);
+    }
+
+    public int minDepth(Node root) {
+
+        int x=0, y=0;
+
+        if(root == null){
+            return 0;
+        }
+
+        x = minDepth(root.left);
+        y = minDepth(root.right);
+
+        if(root.left == null){
+            return y + 1;
+        }
+
+        if (root.right == null){
+            return x + 1;
+        }
+
+        return Math.min(x,y) + 1;
+
     }
 }

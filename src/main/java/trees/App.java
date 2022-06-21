@@ -37,6 +37,12 @@ public class App {
         System.out.println("Level order traversal: ");
         tree.levelOrder(a);
 
+        // count the number of nodes in a binary tree
+        System.out.println("Number of nodes: " + tree.count(a));
+
+        // count the number of nodes in a binary tree
+        System.out.println("Number of nodes: " + tree.countNode(a));
+
         // count the number of leaves in a tree
         System.out.println("Number of leaves: " + tree.countLeaves(a));
 

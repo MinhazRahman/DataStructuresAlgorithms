@@ -26,9 +26,9 @@ import java.util.Queue;
  *  -
  * */
 
-public class GraphBSF {
+public class GraphBFS {
 
-    public static void graphBSF(int[][] edges, int startingVertex){
+    public static void graphBFS(int[][] edges, int startingVertex){
         // We need a queue to store visited vertices, that we will explore later
         Queue<Integer> queue = new LinkedList<>();
         // We need an array to keep track of visited vertices
@@ -75,18 +75,18 @@ public class GraphBSF {
                         {0, 0, 0, 0, 0, 1, 0, 0}, // 6
                         {0, 0, 0, 0, 0, 1, 0, 0}}; // 7
 
-        graphBSF(edges, 1);
+        graphBFS(edges, 1);
         System.out.println();
-        graphBSF(edges, 2);
+        graphBFS(edges, 2);
         System.out.println();
-        graphBSF(edges, 3);
+        graphBFS(edges, 3);
         System.out.println();
-        graphBSF(edges, 4);
+        graphBFS(edges, 4);
         System.out.println();
-        graphBSF(edges, 5);
+        graphBFS(edges, 5);
         System.out.println();
-        graphBSF(edges, 6);
+        graphBFS(edges, 6);
         System.out.println();
-        graphBSF(edges, 7);
+        graphBFS(edges, 7);
     }
 }

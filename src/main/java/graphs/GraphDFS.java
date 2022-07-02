@@ -1,8 +1,6 @@
 package graphs;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  *  1 --------- 2
@@ -28,39 +26,55 @@ import java.util.Queue;
 
 public class GraphDFS {
 
-    public static void graphDFS(int[][] edges, int startingVertex){
-        // We need a queue to store visited vertices, that we will explore later
-        Queue<Integer> queue = new LinkedList<>();
-        // We need an array to keep track of visited vertices
-        int[] visited = new int[edges.length];
-        Arrays.fill(visited, 0);
+    public static void graphDFS(int[][] edges, int node){
+        Stack<Integer> stack = new Stack<>();
+        Set<Integer> visitedSet = new LinkedHashSet<>();
 
-        // mark the vertex as visited
-        visited[startingVertex] = 1;
-        // add the starting vertex to the queue
-        queue.add(startingVertex);
+        // push the first node onto the stack
+        stack.push(node);
+        // add the node to the visited set of nodes
+        visitedSet.add(node);
 
-        // as long as the queue is not empty, pop one vertex from the queue and explore it
-        while (!queue.isEmpty()){
-            // number of columns of the 2D array/adjacency matrix
-            int n = edges[0].length;
-            // pop the head element/vertex from the queue for exploration
-            int u = queue.poll();
-            System.out.print(u + " ");
+        while (!stack.isEmpty()){
+            // pop the element from the stack
+            int current = stack.pop();
+            // System.out.println(current);
 
-            // explore the vertex u
+            // push the neighbors of current node onto the stack
+            int n = edges[current].length;
             for (int v = 1; v<n; v++){
-                // if there is an edge and the vertex at the other end of the edge is not
-                // visited yet, then visit the vertex and add the visited vertex to the
-                // queue, so that we can explore it later
-                if (edges[u][v] == 1 && visited[v] == 0){
-                    // mark the vertex as visited
-                    visited[v] = 1;
-                    // add the vertex to the queue
-                    queue.add(v);
+                if (edges[current][v] == 1 && !visitedSet.contains(v)){
+                    stack.push(v);
+                    visitedSet.add(v);
                 }
             }
         }
+
+        System.out.println(visitedSet);
+    }
+
+    public static void graphStackDFS(int[][] edges, int node){
+        Stack<Integer> stack = new Stack<>();
+        Set<Integer> visitedSet = new LinkedHashSet<>();
+
+        // push the first node onto the stack
+        stack.push(node);
+
+        while (!stack.isEmpty()){
+            // pop the element from the stack
+            int current = stack.pop();
+            visitedSet.add(current);
+
+            // push the neighbors of current node onto the stack
+            int n = edges[current].length;
+            for (int v = 1; v<n; v++){
+                if (edges[current][v] == 1 && !visitedSet.contains(v)){
+                    stack.push(v);
+                }
+            }
+        }
+
+        System.out.println(visitedSet);
     }
 
     public static void dfs(int[][] edges, int n, int u, int[] visited){
@@ -73,6 +87,21 @@ public class GraphDFS {
                 // visited yet, then visit the vertex recursively
                 if (edges[u][v] == 1 && visited[v] == 0){
                     dfs(edges, n, v, visited);
+                }
+            }
+        }
+    }
+
+    public static void dfs(int[][] edges, int n, int current, Set<Integer> set){
+        if (!set.contains(current)){
+            // add the node to the visited set of nodes
+            set.add(current);
+            // explore vertex u
+            for (int v = 1; v<n; v++){
+                // if there is an edge and the vertex at the other end of the edge is not
+                // visited yet, then visit the vertex recursively
+                if (edges[current][v] == 1 && !set.contains(v)){
+                    dfs(edges, n, v, set);
                 }
             }
         }
@@ -96,21 +125,19 @@ public class GraphDFS {
         int[] visited = new int[edges.length];
         Arrays.fill(visited, 0);
 
+        // Define set to store visited vertices
+        Set<Integer> set = new LinkedHashSet<>();
+
         dfs(edges, n, 4, visited);
-/**
-        graphDFS(edges, 1);
-        System.out.println();
-        graphDFS(edges, 2);
-        System.out.println();
-        graphDFS(edges, 3);
+
         System.out.println();
         graphDFS(edges, 4);
+
+        dfs(edges, n, 4, set);
+        System.out.println(set);
+
         System.out.println();
-        graphDFS(edges, 5);
-        System.out.println();
-        graphDFS(edges, 6);
-        System.out.println();
-        graphDFS(edges, 7);
- */
+        graphStackDFS(edges, 1);
+
     }
 }

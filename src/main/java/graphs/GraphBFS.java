@@ -1,8 +1,6 @@
 package graphs;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  *  1 --------- 2
@@ -63,6 +61,42 @@ public class GraphBFS {
         }
     }
 
+    public static void bsf(int[][] edges, int startingVertex){
+        // We need a queue to store visited vertices, that we will explore later
+        Queue<Integer> queue = new LinkedList<>();
+        // define a set to keep track of visited nodes
+        Set<Integer> visitedSet = new LinkedHashSet<>();
+
+        // add the starting vertex to the queue
+        queue.add(startingVertex);
+
+        // as long as the queue is not empty, pop one vertex from the queue and explore it
+        while (!queue.isEmpty()){
+
+            // take out the head node/vertex from the queue for exploration
+            int current = queue.poll();
+            // add the current to the set of visited nodes
+            visitedSet.add(current);
+
+            // number of columns of the 2D array/adjacency matrix
+            int n = edges[current].length;
+
+            // explore the current node
+            // iterate over the row of adjacency matrix
+            for (int v = 1; v<n; v++){
+                // if there is an edge and the vertex at the other end of the edge is not
+                // visited yet, then visit the vertex and add the visited vertex to the
+                // queue, so that we can explore it later
+                if (edges[current][v] == 1 && !visitedSet.contains(v)){
+                    // add the vertex to the queue
+                    queue.add(v);
+                }
+            }
+        }
+
+        System.out.println(visitedSet);
+    }
+
     public static void main(String[] args) {
         // 8x8 graph, we will leave the 0th row and the 0th column empty
         //               0  1  2  3  4  5  6  7
@@ -76,17 +110,9 @@ public class GraphBFS {
                         {0, 0, 0, 0, 0, 1, 0, 0}}; // 7
 
         graphBFS(edges, 1);
+
         System.out.println();
-        graphBFS(edges, 2);
-        System.out.println();
-        graphBFS(edges, 3);
-        System.out.println();
-        graphBFS(edges, 4);
-        System.out.println();
-        graphBFS(edges, 5);
-        System.out.println();
-        graphBFS(edges, 6);
-        System.out.println();
-        graphBFS(edges, 7);
+        bsf(edges, 4);
+
     }
 }

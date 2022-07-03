@@ -28,6 +28,9 @@ import java.util.*;
  *  Match:
  *  - depth first search
  *  Plan:
+ *  - For depth first search we need a stack
+ *  - we can use stack differently:
+ *  - 1. explicit use of stack data structure and 2. recursion to use underlying call stack
  *  - start from a source node
  *  - and then explore the node
  *  -

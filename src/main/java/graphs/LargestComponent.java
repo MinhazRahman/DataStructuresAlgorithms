@@ -108,6 +108,58 @@ public class LargestComponent {
 
         return gcd;
     }
+
+    public static boolean isCommonFactorGreaterThanOne(int num1, int num2){
+
+        while (num1 != num2) {
+            if(num1 > num2)
+                num1 = num1 - num2;
+            else
+                num2 = num2 - num1;
+        }
+
+        return num2 > 1;
+    }
+
+    public static Map<Integer, Set<Integer>> buildGraph(int[] nums){
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
+
+        for (int i=0; i<nums.length; i++){
+            for (int j=i+1; j<nums.length; j++){
+
+                Integer nodeA = nums[i];
+                Integer nodeB = nums[j];
+
+                if (!graph.containsKey(nodeA)){
+                    graph.put(nodeA, Collections.emptySet());
+                }
+
+                if(!graph.containsKey(nodeB)){
+                    graph.put(nodeB, Collections.emptySet());
+                }
+
+                if (isCommonFactorGreaterThanOne(nums[i], nums[j])){
+
+                    Set<Integer> setA = new HashSet<>(graph.get(nodeA));
+                    setA.add(nodeB);
+                    graph.put(nodeA, setA);
+
+                    Set<Integer> setB = new HashSet<>(graph.get(nodeB));
+                    setB.add(nodeA);
+                    graph.put(nodeB,setB);
+                }
+            }
+        }
+        return graph;
+    }
+
+    public static void  printGraph(Map<Integer, Set<Integer>> graph){
+        for (Map.Entry<Integer, Set<Integer>> entry: graph.entrySet()){
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+    }
+
     public static void main(String[] args) {
         // an unordered undirected map that represents a graph
         Map<Integer, List<Integer>> graph = new HashMap<>();
@@ -128,5 +180,15 @@ public class LargestComponent {
         // call GCD
         System.out.println(GCD(21, 12));
         System.out.println(gcd(21, 12));
+        System.out.println(isCommonFactorGreaterThanOne(50, 9));
+        System.out.println(isCommonFactorGreaterThanOne(9, 20));
+        System.out.println(isCommonFactorGreaterThanOne(20, 63));
+
+        // build graph
+        int[] nums = {2,3,6,7,4,12,21,39};
+        Map<Integer, Set<Integer>> G = buildGraph(nums);
+        printGraph(G);
+
+
     }
 }

@@ -20,10 +20,21 @@ import java.util.*;
 
 public class WordLadder {
     public static int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        Map<String, Set<String>> graph = buildGraph(wordList);
-        if (!wordList.contains(beginWord)) {
-            graph.put(beginWord, Collections.singleton(wordList.get(0)));
+
+        // if the word list doesn't contain endWord
+        if(!wordList.contains(endWord)){
+            return 0;
         }
+
+        // if the beginWord is not in the word list, the add the beginWord to the list
+        // it helps us to construct the graph that includes the beginWord
+        if (!wordList.contains(beginWord)){
+            wordList.add(beginWord);
+        }
+
+        Map<String, Set<String>> graph = buildGraph(wordList);
+
+        printGraph(graph);
 
         // queue for breath first order
         Queue<Pair<String, Integer>> queue = new LinkedList<>();
@@ -34,7 +45,7 @@ public class WordLadder {
         // pair = (src, distance-from-the-source), pair = (w,0)
         // add the source to the queue
 
-        queue.add(new Pair<>(beginWord, 0)); // source node src is 0 edges away from itself
+        queue.add(new Pair<>(beginWord, 1)); // source node src is 0 edges away from itself
         visited.add(beginWord);
 
         while (!queue.isEmpty()){
@@ -45,7 +56,7 @@ public class WordLadder {
             int distance = currentPair.getValue();
 
             if (currentNode.equals(endWord)){
-                return distance+1;
+                return distance;
             }
 
             Set<String> neighbors = graph.get(currentNode);
@@ -58,7 +69,7 @@ public class WordLadder {
             }
         }
 
-        return -1;
+        return 0;
     }
 
     public static int ladderSize(String beginWord, String endWord, List<String> wordList) {
@@ -120,7 +131,7 @@ public class WordLadder {
                     graph.put(nodeB, Collections.emptySet());
                 }
 
-                if (isDifferBySingleCharacter(word,word1)){
+                if (isDifferBySingleCharacter(nodeA,nodeB)){
 
                     Set<String> setA = new HashSet<>(graph.get(nodeA));
                     setA.add(nodeB);
@@ -165,13 +176,6 @@ public class WordLadder {
 
         String beginWord = "lost";
         String endWord =  "miss";
-
-        Map<String, Set<String>> graph = buildGraph(wordList);
-        if(!wordList.contains(beginWord)) {
-            graph.put(beginWord, Collections.singleton(wordList.get(0)));
-        }
-
-        printGraph(graph);
 
         // call the ladder length
         System.out.println(ladderLength(beginWord, endWord, wordList));

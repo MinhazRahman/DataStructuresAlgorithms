@@ -9,8 +9,18 @@ public class RotateString {
             }
         }
     }
+
+    public static void rotate(String str){
+        int n = str.length();
+
+        for (int i=0; i<n; i++){
+            String sub = str.substring(i+1, n) + str.substring(0, i+1);
+                System.out.println(sub);
+        }
+    }
     public static void main(String[] args) {
         String str = "abcde";
-        rotateString(str);
+        System.out.println(str);
+        rotate(str);
     }
 }

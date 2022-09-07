@@ -78,11 +78,36 @@ public class Uncompress {
         }
         return sb.toString();
     }
+
+    // n = number of <number><char> groups
+    // m = max number for any group
+    // Time complexity: O(n * m) and Space complexity: O(n * m)
+    public static String uncompressStr(String input){
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for (int j = 0; j < input.length(); j++){
+            char ch = input.charAt(j);
+            if (Character.isAlphabetic(ch)){
+                int n = Integer.parseInt(input.substring(i, j));
+                for (int k = 0; k < n; k++){
+                    sb.append(ch);
+                }
+                // move i up to j
+                i = j + 1;
+            }
+        }
+
+        return sb.toString();
+    }
     public static void main(String[] args) {
+        /*
         System.out.println(uncompress("2p1o5p"));
         System.out.println(uncompress("3n12e2z"));
 
         System.out.println(uncompressString("2p1o5p"));
         System.out.println(uncompressString("3n12e2z"));
+        */
+        System.out.println(uncompressStr("2p1o5p"));
+        System.out.println(uncompressStr("3n12e2z"));
     }
 }

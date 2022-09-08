@@ -35,10 +35,37 @@ public class Compress {
         }
        return sb.toString();
     }
+
+    public static String compressString(String input){
+        StringBuilder sb = new StringBuilder();
+
+        int i = 0;
+        int j = 0;
+        for (j = 0; j < input.length(); j++){
+            if (input.charAt(i) != input.charAt(j)){
+                if (j - i > 1){sb.append(j - i);}
+                sb.append(input.charAt(i));
+                i = j; // update i
+            }
+        }
+
+        // at this point j == input.length()
+        if (j - i > 1){ sb.append(j - i);}
+        sb.append(input.charAt(i));
+
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println(compress("ccaaatbbb"));
         System.out.println(compress("ssssbbz"));
         System.out.println(compress("ppoppppp"));
         System.out.println(compress("nnneeeeeeeeeeeezz"));
+
+        System.out.println();
+        System.out.println(compressString("ccaaatbbb"));
+        System.out.println(compressString("ssssbbz"));
+        System.out.println(compressString("ppoppppp"));
+        System.out.println(compressString("nnneeeeeeeeeeeezz"));
     }
 }

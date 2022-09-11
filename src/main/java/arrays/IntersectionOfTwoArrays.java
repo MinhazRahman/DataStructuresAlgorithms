@@ -39,10 +39,41 @@ public class IntersectionOfTwoArrays {
         return ans;
     }
 
+    public static int[] intersectionOf(int[] a, int[] b){
+       Set<Integer> set = new HashSet<>();
+        List<Integer> commonElements = new ArrayList<>();
+
+        // add the elements of array 'a' to the set
+        for (int i = 0; i < a.length; i++){
+            set.add(a[i]);
+        }
+
+        // iterate over the array b and check if the set contains the element
+        for (int n: b){
+            if (set.contains(n)){
+                commonElements.add(n);
+            }
+        }
+
+        int[] ans = new int[commonElements.size()];
+        for (int i = 0; i < commonElements.size(); i++){
+            ans[i] = commonElements.get(i);
+        }
+
+        return ans;
+    }
+
     public static void main(String[] args) {
         System.out.println(Arrays.toString(intersection(new int[]{4, 2, 1, 6}, new int[]{3, 6, 9, 2, 10})));
         System.out.println(Arrays.toString(intersection(new int[]{2,4,6}, new int[]{2,4})));
         System.out.println(Arrays.toString(intersection(new int[]{4, 2, 1}, new int[]{1,2,4,6})));
         System.out.println(Arrays.toString(intersection(new int[]{0,1,2}, new int[]{10,11})));
+
+        System.out.println();
+
+        System.out.println(Arrays.toString(intersectionOf(new int[]{4, 2, 1, 6}, new int[]{3, 6, 9, 2, 10})));
+        System.out.println(Arrays.toString(intersectionOf(new int[]{2,4,6}, new int[]{2,4})));
+        System.out.println(Arrays.toString(intersectionOf(new int[]{4, 2, 1}, new int[]{1,2,4,6})));
+        System.out.println(Arrays.toString(intersectionOf(new int[]{0,1,2}, new int[]{10,11})));
     }
 }

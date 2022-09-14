@@ -273,4 +273,12 @@ public class SinglyLinkedList {
         return previous;
     }
 
+    // reverse a linked list recursively
+    public static Node reverse(Node head, Node prev){
+        if (head == null) return prev;
+        Node next = head.next;
+        head.next = prev;
+        return reverse(next, head);
+    }
+
 }

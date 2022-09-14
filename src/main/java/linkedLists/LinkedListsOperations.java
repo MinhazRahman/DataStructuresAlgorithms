@@ -223,6 +223,14 @@ public class LinkedListsOperations {
         return previous;
     }
 
+    // reverse a linked list recursively
+    public static Node reverse(Node head, Node prev){
+        if (head == null) return prev;
+        Node next = head.next;
+        head.next = prev;
+        return reverse(next, head);
+    }
+
     public static void main(String[] args) {
         // Form a Linked lists
         // Define the head node
@@ -248,7 +256,7 @@ public class LinkedListsOperations {
         display(head);
         System.out.println();
 
-        Node newHead = reverse(head);
+        Node newHead = reverse(head, null);
         display(newHead);
     }
 }

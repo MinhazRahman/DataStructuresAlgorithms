@@ -204,11 +204,11 @@ public class LinkedListsOperations {
     }
 
     // reverse a linked list
-    // a -----> b -----> c -----> d -----> e -----> f (1)
-    // prev     curr    next
-    // null <----- a     b -----> c -----> d -----> e -----> f (2)
+    //  null        a -----> b -----> c -----> d -----> e -----> f (0) before entering the loop
+    //  prev       curr
+    // null <----- a     b -----> c -----> d -----> e -----> f (1) when enters the loop
     //            prev  curr    next
-    // null <----- a <----- b       c -----> d -----> e -----> f (3)
+    // null <----- a <----- b       c -----> d -----> e -----> f (2)
     //                     prev     curr    next
     public static Node reverse(Node head){
         Node previous = null;

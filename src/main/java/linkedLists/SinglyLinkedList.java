@@ -254,6 +254,12 @@ public class SinglyLinkedList {
     }
 
     // reverse a linked list
+    //  null        a -----> b -----> c -----> d -----> e -----> f (0) before entering the loop
+    //  prev       curr
+    // null <----- a     b -----> c -----> d -----> e -----> f (1) when enters the loop
+    //            prev  curr    next
+    // null <----- a <----- b       c -----> d -----> e -----> f (2)
+    //                     prev     curr    next
     public Node reverse(Node head){
         Node previous = null;
         Node current = head;

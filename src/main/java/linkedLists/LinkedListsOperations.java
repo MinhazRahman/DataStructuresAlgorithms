@@ -203,6 +203,26 @@ public class LinkedListsOperations {
         return null;
     }
 
+    // reverse a linked list
+    // a -----> b -----> c -----> d -----> e -----> f (1)
+    // prev     curr    next
+    // null <----- a     b -----> c -----> d -----> e -----> f (2)
+    //            prev  curr    next
+    // null <----- a <----- b       c -----> d -----> e -----> f (3)
+    //                     prev     curr    next
+    public static Node reverse(Node head){
+        Node previous = null;
+        Node current = head;
+
+        while (current != null){
+            Node next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        return previous;
+    }
+
     public static void main(String[] args) {
         // Form a Linked lists
         // Define the head node
@@ -228,7 +248,7 @@ public class LinkedListsOperations {
         display(head);
         System.out.println();
 
-        Node newHead =  moveToFront(head, 30);
+        Node newHead = reverse(head);
         display(newHead);
     }
 }

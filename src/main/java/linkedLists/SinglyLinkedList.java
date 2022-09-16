@@ -281,4 +281,46 @@ public class SinglyLinkedList {
         return reverse(next, head);
     }
 
+    /** // merge list
+     * 5    -> 7    ->10    -> 12    -> 20   -> 28
+     * current1
+     *
+     * 6     -> 8    -> 9    -> 25
+     * current2
+     *
+     * dummy (create a dummy node first and the tail node refers to the dummy node)
+     * tail
+     *
+     * dummy --> 5
+     *          tail
+     *
+     * dummy --->5  -->6
+     *                 tail
+     * */
+
+    public Node mergeLists(Node head1, Node head2){
+        Node current1 = head1;
+        Node current2 = head2;
+        Node dummy = new Node();
+        Node tail = dummy;
+
+        while (current1 != null && current2 != null){
+            if (current1.data <= current2.data){
+                tail.next = current1;
+                current1 = current1.next;
+            }else {
+                tail.next = current2;
+                current2 = current2.next;
+            }
+
+            tail = tail.next;
+        }
+
+        if (current1 != null) tail.next = current1;
+        if (current2 != null) tail.next = current2;
+
+        return dummy.next;
+    }
+
+
 }

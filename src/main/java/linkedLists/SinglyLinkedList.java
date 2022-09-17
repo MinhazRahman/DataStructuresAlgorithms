@@ -322,5 +322,35 @@ public class SinglyLinkedList {
         return dummy.next;
     }
 
+    /** Write a function, longestStreak, that takes in the head of a linked list as an argument.
+     * The function should return the length of the longest consecutive streak of the same value within the list.
+     * // 5 -> 5 -> 7 -> 7 -> 7 -> 6 : 3
+     * // 3 -> 3 -> 3 -> 3 -> 9 -> 9 : 4
+     * // 9 -> 9 -> 1 -> 9 -> 9 -> 9 : 3
+     * // 5 -> 5 : 2
+     * // 4 : 1
+     * // null : 0
+     *
+     * */
+
+    public int longestStreak(Node head){
+        Node left = head;
+        Node right = head;
+        int count = 0;
+        int maxStreak = 0;
+
+        while (right != null){
+            if (left.data == right.data){
+                count++;
+            }else {
+                left = right; // both left and right pointers point to the same node
+                count = 1;
+            }
+            maxStreak = Math.max(maxStreak, count);
+            right = right.next; // move the right pointer to the next node
+        }
+        return maxStreak;
+    }
+
 
 }

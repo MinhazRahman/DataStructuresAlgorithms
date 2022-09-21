@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         // create an object
-        DepthFirstOrder tree = new DepthFirstOrder();
+        BreathFirstOrder tree = new BreathFirstOrder();
 
         // create nodes
         Node a = new Node(2);
@@ -24,9 +24,7 @@ public class Main {
         c.right = g;
 
         // print the depth first tree values
-        System.out.println(tree.depthFirstValues(a));
+        System.out.println(tree.breathFirstValues(a));
 
-        // print the depth first tree values
-        System.out.println(tree.depthFirstValuesIteratively(a));
     }
 }

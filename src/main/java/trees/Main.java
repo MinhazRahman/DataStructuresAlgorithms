@@ -26,5 +26,8 @@ public class Main {
         // print the depth first tree values
         System.out.println(tree.breathFirstValues(a));
 
+        // tree sum
+        System.out.println(tree.treeSum(a));
+
     }
 }

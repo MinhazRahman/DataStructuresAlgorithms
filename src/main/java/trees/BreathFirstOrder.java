@@ -28,4 +28,25 @@ public class BreathFirstOrder extends BinaryTree{
         }
         return bfValues;
     }
+
+    /**
+     * Write a function, treeSum, that takes in the root of a binary tree that contains number values.
+     * The function should return the total sum of all values in the tree.
+     * */
+    public int treeSum(Node root){
+        int sum = 0;
+        Queue<Node> queue = new LinkedList<>();
+
+        if (root != null) queue.add(root);
+
+        while (!queue.isEmpty()){
+            Node current = queue.poll();
+            sum += current.data;
+
+            if (current.left != null) queue.add(current.left);
+            if (current.right != null) queue.add(current.right);
+        }
+
+        return sum;
+    }
 }

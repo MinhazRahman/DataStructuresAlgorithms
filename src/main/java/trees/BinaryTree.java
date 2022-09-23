@@ -230,4 +230,14 @@ public class BinaryTree {
 
         return isInclude(root.left, target) || isInclude(root.right, target);
     }
+
+    // count the number of target value recursively
+    public int countTreeValue(Node root, int target){
+        if (root == null) return 0;
+        if (root.data == target){
+            return 1 + countTreeValue(root.left, target) + countTreeValue(root.right, target);
+        }else {
+            return countTreeValue(root.left, target) + countTreeValue(root.right, target);
+        }
+    }
 }

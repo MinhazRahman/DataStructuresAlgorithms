@@ -9,9 +9,9 @@ public class App {
         Node a = new Node(2);
         Node b = new Node(3);
         Node c = new Node(4);
-        Node d = new Node(5);
+        Node d = new Node(2);
         Node e = new Node(6);
-        Node f = new Node(7);
+        Node f = new Node(2);
         Node g = new Node(8);
 
         // create the binary tree manually
@@ -63,6 +63,9 @@ public class App {
 
         // find an element in a tree
         System.out.println("Is included: " + tree.isInclude(a, 10) );
+
+        // count the number of target values in a tree
+        System.out.println("Number of target values: " + tree.countTreeValue(a, 10));
 
     }
 }

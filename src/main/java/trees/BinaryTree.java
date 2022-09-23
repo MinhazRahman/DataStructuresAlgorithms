@@ -206,6 +206,7 @@ public class BinaryTree {
 
     }
 
+    // find the minimum tree value recursively
     public int minTreeValue(Node root){
         if(root == null) return Integer.MAX_VALUE;
 
@@ -215,10 +216,18 @@ public class BinaryTree {
         return Math.min(root.data, Math.min(leftMin, rightMin));
     }
 
-    // sum of all the tree values
+    // calculate the sum of all the tree values recursively
     public int treeSum(Node root){
        if (root == null) return 0;
 
        return root.data + treeSum(root.left) + treeSum(root.right);
+    }
+
+    // find a value in a binary tree recursively
+    public boolean isInclude(Node root, int target){
+        if(root == null) return false;
+        if (root.data == target) return true;
+
+        return isInclude(root.left, target) || isInclude(root.right, target);
     }
 }

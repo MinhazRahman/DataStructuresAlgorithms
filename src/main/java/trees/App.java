@@ -61,5 +61,8 @@ public class App {
         // sum of all the tree values
         System.out.println("Sum of all the tree values: " + tree.treeSum(a));
 
+        // find an element in a tree
+        System.out.println("Is included: " + tree.isInclude(a, 10) );
+
     }
 }

@@ -58,5 +58,8 @@ public class App {
         // min tree value
         System.out.println("Min tree value: " + tree.minTreeValue(a));
 
+        // sum of all the tree values
+        System.out.println("Sum of all the tree values: " + tree.treeSum(a));
+
     }
 }

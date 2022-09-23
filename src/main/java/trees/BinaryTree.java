@@ -214,4 +214,11 @@ public class BinaryTree {
 
         return Math.min(root.data, Math.min(leftMin, rightMin));
     }
+
+    // sum of all the tree values
+    public int treeSum(Node root){
+       if (root == null) return 0;
+
+       return root.data + treeSum(root.left) + treeSum(root.right);
+    }
 }

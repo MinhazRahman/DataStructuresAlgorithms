@@ -55,5 +55,8 @@ public class App {
         // sum of all the right leaves
         System.out.println("Sum of right leaves: " + tree.sumOfRightLeaves(a));
 
+        // min tree value
+        System.out.println("Min tree value: " + tree.minTreeValue(a));
+
     }
 }

@@ -206,4 +206,12 @@ public class BinaryTree {
 
     }
 
+    public int minTreeValue(Node root){
+        if(root == null) return Integer.MAX_VALUE;
+
+        int leftMin = minTreeValue(root.left);
+        int rightMin = minTreeValue(root.right);
+
+        return Math.min(root.data, Math.min(leftMin, rightMin));
+    }
 }

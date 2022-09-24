@@ -14,6 +14,15 @@ public class App {
         Node f = new Node(2);
         Node g = new Node(8);
 
+        /**
+         *                  2
+         *                /   \
+         *               3     4
+         *              / \   / \
+         *             2   6 2   8
+         *
+         * */
+
         // create the binary tree manually
         a.left = b;
         a.right = c;
@@ -66,6 +75,9 @@ public class App {
 
         // count the number of target values in a tree
         System.out.println("Number of target values: " + tree.countTreeValue(a, 10));
+
+        // max path sum
+        System.out.println("Max path sum: " + tree.maxPathSum(a));
 
     }
 }

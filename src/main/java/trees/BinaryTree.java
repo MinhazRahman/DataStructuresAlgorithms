@@ -240,4 +240,45 @@ public class BinaryTree {
             return countTreeValue(root.left, target) + countTreeValue(root.right, target);
         }
     }
+
+    /**
+     * Write a function, maxPathSum, that takes in the root of a binary tree that contains number values.
+     * The function should return the maximum sum of any root to leaf path within the tree.
+     *
+     * You may assume that the input tree is non-empty.
+     * First version:
+     * const maxPathSum = (root) => {
+     *   if(root == null) return -Infinity;
+     *   if(root.left == null && root.right == null) return root.val;
+     *
+     *   let maxChild = Math.max(maxPathSum(root.left), maxPathSum(root.right));
+     *   return root.val + maxChild;
+     * };
+     *
+     * Second version:
+     * const maxPathSum = (root) => {
+     *   if(root == null) return -Infinity;
+     *   if(root.left == null && root.right == null) return root.val;
+     *
+     *   let maxLeftPathSum = maxPathSum(root.left);
+     *   let maxRightPathSum = maxPathSum(root.right);
+     *
+     *   return root.val + Math.max(maxLeftPathSum, maxRightPathSum);
+     * };
+     * */
+
+    /**
+     *                  2
+     *                /   \
+     *               3     4
+     *              / \     \
+     *             2   6     8
+     *
+     * */
+    public int maxPathSum(Node root){
+        if (root == null) return Integer.MIN_VALUE;
+        if (root.left == null && root.right == null) return root.data;
+
+        return root.data + Math.max(maxPathSum(root.left), maxPathSum(root.right));
+    }
 }

@@ -79,5 +79,8 @@ public class App {
         // max path sum
         System.out.println("Max path sum: " + tree.maxPathSum(a));
 
+        // print tree levels
+        System.out.println("Tree levels: " + tree.treeLevels(a));
+
     }
 }

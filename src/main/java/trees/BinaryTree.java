@@ -281,4 +281,61 @@ public class BinaryTree {
 
         return root.data + Math.max(maxPathSum(root.left), maxPathSum(root.right));
     }
+
+    /** Write a function, pathFinder, that takes in the root of a binary tree and a target value.
+     * The function should return an array representing a path to the target value.
+     * If the target value is not found in the tree, then return null.
+     * You may assume that the tree contains unique values.
+     *
+     * const pathFinder = (root, target) => {
+     *   let result = pathFinderHelper(root, target);
+     *
+     *   if(result == null){
+     *     return result;
+     *   }else{
+     *     return result.reverse();
+     *   }
+     * }
+     * const pathFinderHelper = (root, target) => {
+     *   if(root == null) return null;
+     *   if(root.val == target) return [root.val];
+     *
+     *   let leftPath = pathFinderHelper(root.left, target);
+     *   let rightPath = pathFinderHelper(root.right, target);
+     *
+     *   if(leftPath != null) {
+     *     leftPath.push(root.val);
+     *     return leftPath;
+     *   }
+     *   if(rightPath != null){
+     *     rightPath.push(root.val);
+     *     return rightPath;
+     *   }
+     *   return null;
+     * };
+     * */
+
+    /** Write a function, treeLevels, that takes in the root of a binary tree.
+     * The function should return a 2-Dimensional array where each subarray represents a level of the tree.
+     *
+     * */
+    public List<List<Integer>> treeLevels(Node root){
+        List<List<Integer>> levels = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+
+        if (root != null) queue.add(root);
+
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            List<Integer> level = new ArrayList<>();
+            for (int i = 0; i < size; i++){
+                Node current = queue.poll();
+                level.add(current.data);
+                if (current.left != null) queue.add(current.left);
+                if (current.right != null) queue.add(current.right);
+            }
+            levels.add(level);
+        }
+        return levels;
+    }
 }

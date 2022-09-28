@@ -338,4 +338,27 @@ public class BinaryTree {
         }
         return levels;
     }
+
+    /**Write a function, levelAverages, that takes in the root of a binary tree that contains number values.
+     * The function should return an array containing the average value of each level.
+     * */
+    public List<Double> treeLevelAverages(Node root){
+        List<Double> levelAverages = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+
+        if (root != null) queue.add(root);
+
+        while (!queue.isEmpty()){
+            double levelSum = 0.0;
+            int size = queue.size();
+            for (int i = 0; i < size; i++){
+                Node current = queue.poll();
+                levelSum += current.data;
+                if (current.left != null) queue.add(current.left);
+                if (current.right != null) queue.add(current.right);
+            }
+            levelAverages.add(levelSum/size);
+        }
+        return levelAverages;
+    }
 }

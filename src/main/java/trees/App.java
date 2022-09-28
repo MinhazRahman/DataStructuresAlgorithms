@@ -82,5 +82,8 @@ public class App {
         // print tree levels
         System.out.println("Tree levels: " + tree.treeLevels(a));
 
+        // print the tree level averages
+        System.out.println("Tree level averages: " + tree.treeLevelAverages(a));
+
     }
 }

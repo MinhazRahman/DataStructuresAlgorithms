@@ -1,9 +1,6 @@
 package trees;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class BinaryTree {
     Node root;
@@ -314,6 +311,7 @@ public class BinaryTree {
      *   return null;
      * };
      * */
+    
 
     /** Write a function, treeLevels, that takes in the root of a binary tree.
      * The function should return a 2-Dimensional array where each subarray represents a level of the tree.
@@ -360,5 +358,57 @@ public class BinaryTree {
             levelAverages.add(levelSum/size);
         }
         return levelAverages;
+    }
+
+    /** Write a function, allTreePaths, that takes in the root of a binary tree.
+     * The function should return a 2-Dimensional array where each subarray represents a root-to-leaf path in the tree.
+     * The order within an individual path must start at the root and end at the leaf,
+     * but the relative order among paths in the outer array does not matter.
+     * You may assume that the input tree is non-empty.
+     * Javascript solution:
+     * const allTreePaths = (root) => {
+     *   if(root == null) return [];
+     *   if(root.left == null && root.right == null) return [[root.val]];
+     *
+     *   let paths = [];
+     *
+     *   let leftSubPaths = allTreePaths(root.left);
+     *   for(let leftSubPath of leftSubPaths){
+     *     paths.push([root.val, ...leftSubPath]);
+     *   }
+     *
+     *   let rightSubPaths = allTreePaths(root.right);
+     *   for(let rightSubPath of rightSubPaths){
+     *     paths.push([root.val, ...rightSubPath]);
+     *   }
+     *
+     *   return paths;
+     * };
+     * */
+    public List<List<Integer>> allTreePaths(Node root){
+        if(root == null) return Collections.emptyList();
+        if(root.left == null && root.right == null) {
+            List<List<Integer>> listPath = new ArrayList<>();
+            List<Integer> path = new ArrayList<>();
+            path.add(root.data);
+            listPath.add(path);
+            return listPath;
+        }
+
+        List<List<Integer>> treePaths = new ArrayList<>();
+
+        List<List<Integer>> leftSubPaths = allTreePaths(root.left);
+        for (List<Integer> leftSubPath: leftSubPaths){
+            leftSubPath.add(0,root.data);
+            treePaths.add(leftSubPath);
+        }
+
+        List<List<Integer>> rightSubPaths = allTreePaths(root.right);
+        for (List<Integer> rightSubPath: rightSubPaths){
+            rightSubPath.add(0,root.data);
+            treePaths.add(rightSubPath);
+        }
+
+        return treePaths;
     }
 }

@@ -311,6 +311,40 @@ public class BinaryTree {
      *   return null;
      * };
      * */
+    public List<Integer> pathFinder(Node root, int target){
+        List<Integer> result = pathFinderHelper(root, target);
+
+        if (result == null){
+            return null;
+        }else {
+            Collections.reverse(result);
+            return result;
+        }
+    }
+
+    public List<Integer> pathFinderHelper(Node root, int target){
+        if (root == null) return null;
+        if (root.data == target){
+            List<Integer> path = new ArrayList<>();
+            path.add(root.data);
+            return path;
+        }
+
+        List<Integer> leftPath = pathFinderHelper(root.left, target);
+        List<Integer> rightPath = pathFinderHelper(root.right, target);
+
+        if (leftPath != null){
+            leftPath.add(root.data);
+            return leftPath;
+        }
+
+        if (rightPath != null){
+            rightPath.add(root.data);
+            return rightPath;
+        }
+
+        return null;
+    }
     
 
     /** Write a function, treeLevels, that takes in the root of a binary tree.

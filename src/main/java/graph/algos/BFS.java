@@ -58,6 +58,7 @@ public class BFS {
             for (Character neighbor: neighbors){
                 queue.add(neighbor);
             }
+            // we can replace the above iteration with bulk call: queue.addAll(neighbors);
         }
         return visited;
     }

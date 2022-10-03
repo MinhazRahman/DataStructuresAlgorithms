@@ -60,6 +60,33 @@ import java.util.*;
 
 public class UndirectedPath {
 
+    // The following method uses BFS to check if there is path between the 'src' and 'dst' nodes
+    public static boolean undirectedPath(char[][] edges, Character src, Character dst){
+        Map<Character, List<Character>> graph = buildGraph(edges);
+        Queue<Character> queue = new LinkedList<>();
+        Set<Character> visited = new LinkedHashSet<>();
+
+        if (src != null) queue.add(src);
+
+        while (!queue.isEmpty()){
+            Character current = queue.poll();
+            visited.add(current);
+            if (current == dst) return true;
+            List<Character> neighbors = graph.get(current);
+            for (Character neighbor: neighbors){
+                if (!visited.contains(neighbor)) queue.add(neighbor);
+            }
+        }
+
+        return false;
+    }
+    /** complexity analysis:
+     * n = # of nodes
+     * e = # of edges
+     * Time complexity: O(e)
+     * Space complexity: O(n)
+     * */
+
     public static Map<Character, List<Character>> buildGraph(char[][] edges){
         // an unordered undirected map that represents a graph
         Map<Character, List<Character>> graph = new HashMap<>();
@@ -95,5 +122,23 @@ public class UndirectedPath {
                 {'m', 'k'},
                 {'k', 'l'},
                 {'o', 'n'}};
+
+        Map<Character, List<Character>> graph = buildGraph(edges);
+        for (Map.Entry<Character, List<Character>> entry: graph.entrySet()){
+            System.out.println(entry.getKey() +": " + entry.getValue());
+        }
+
+        System.out.println(undirectedPath(edges, 'j', 'm'));
+
+        System.out.println(undirectedPath(edges, 'm', 'j'));
+
+        System.out.println(undirectedPath(edges, 'l', 'j'));
+
+        System.out.println(undirectedPath(edges, 'k', 'o'));
+
+        System.out.println(undirectedPath(edges, 'i', 'o'));
+
+        System.out.println(undirectedPath(edges, 'o', 'n'));
+
     }
 }

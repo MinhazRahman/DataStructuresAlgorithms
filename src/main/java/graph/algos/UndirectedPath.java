@@ -115,21 +115,23 @@ public class UndirectedPath {
             Character nodeA = edge[0];
             Character nodeB = edge[1];
 
+            // if the graph doesn't contain node A then, initialize the neighbors of node A as an empty list
             if (!graph.containsKey(nodeA)){
                 graph.put(nodeA, Collections.emptyList());
             }
 
+            // if the graph doesn't contain node B then, initialize the neighbors of node B as an empty list
             if(!graph.containsKey(nodeB)){
                 graph.put(nodeB, Collections.emptyList());
             }
 
-            List<Character> listA = new ArrayList<>(graph.get(nodeA));
-            listA.add(nodeB);
-            graph.put(nodeA, listA);
+            List<Character> neighborsOfA = new ArrayList<>(graph.get(nodeA)); // retrieve the neighbors of node A
+            neighborsOfA.add(nodeB); // add node B as the neighbor of node A
+            graph.put(nodeA, neighborsOfA); // update the graph
 
-            List<Character> listB = new ArrayList<>(graph.get(nodeB));
-            listB.add(nodeA);
-            graph.put(nodeB,listB);
+            List<Character> neighborsOfB = new ArrayList<>(graph.get(nodeB)); // retrieve the neighbors of node B
+            neighborsOfB.add(nodeA); // add node A as the neighbor of node B
+            graph.put(nodeB,neighborsOfB); // update the graph
         }
 
         return graph;

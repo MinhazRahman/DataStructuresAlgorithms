@@ -107,6 +107,23 @@ public class UndirectedPath {
         return false;
     }
 
+    public static boolean undirectedPath(char[][] edges, Character src, Character dst){
+        Map<Character, List<Character>> graph = buildGraph(edges);
+        Set<Character> visited = new LinkedHashSet<>();
+        return hashPath(graph, src, dst, visited);
+    }
+
+    private static boolean hashPath(Map<Character, List<Character>> graph, Character src, Character dst, Set<Character> visited) {
+        if (src == dst) return true;
+        if (visited.contains(src)) return false;
+
+        visited.add(src);
+        for (Character neighbor: graph.get(src)){
+            if (hashPath(graph, neighbor, dst, visited)) return true;
+        }
+        return false;
+    }
+
     public static Map<Character, List<Character>> buildGraph(char[][] edges){
         // an unordered undirected map that represents a graph
         Map<Character, List<Character>> graph = new HashMap<>();
@@ -136,6 +153,7 @@ public class UndirectedPath {
 
         return graph;
     }
+
     public static void main(String[] args) {
         // list of edges
         char[][] edges = {
@@ -175,6 +193,19 @@ public class UndirectedPath {
         System.out.println(undirectedPathDFS(edges, 'i', 'o'));
 
         System.out.println(undirectedPathDFS(edges, 'o', 'n'));
+
+        System.out.println("Undirected Path Recursive DFS: ");
+        System.out.println(undirectedPath(edges, 'j', 'm'));
+
+        System.out.println(undirectedPath(edges, 'm', 'j'));
+
+        System.out.println(undirectedPath(edges, 'l', 'j'));
+
+        System.out.println(undirectedPath(edges, 'k', 'o'));
+
+        System.out.println(undirectedPath(edges, 'i', 'o'));
+
+        System.out.println(undirectedPath(edges, 'o', 'n'));
 
     }
 }

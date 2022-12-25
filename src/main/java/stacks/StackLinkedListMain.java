@@ -15,6 +15,15 @@ public class StackLinkedListMain {
         // print the stack
         stack.printStack();
 
+        int pos = 3;
+        System.out.println("Value at position " + pos + " is " + stack.peek(pos));
+        pos = 4;
+        System.out.println("Value at position " + pos + " is " + stack.peek(pos));
+        pos = 5;
+        System.out.println("Value at position " + pos + " is " + stack.peek(pos));
+        pos = 0;
+        System.out.println("Value at position " + pos + " is " + stack.peek(pos));
+
         System.out.println();
         // pop an element from the stack
         stack.pop();

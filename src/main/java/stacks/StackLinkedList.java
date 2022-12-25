@@ -39,6 +39,32 @@ public class StackLinkedList {
         return val;
     }
 
+    public int peek(int pos){
+        if(pos < 1){
+           return -1;
+        }
+
+        Node current = top;
+        for (int i = 0; current != null && i < pos -1; i++){
+            current = current.next;
+        }
+
+        if (current != null) return current.data;
+        return -1;
+    }
+
+    public int stackTop(){
+        if (top != null){
+            return top.data;
+        }
+        return -1;
+    }
+
+    public boolean isFull(){
+        Node node = new Node();
+        return node == null;
+    }
+
     public boolean isEmpty(){
         return top == null;
     }

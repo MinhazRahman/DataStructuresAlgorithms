@@ -13,5 +13,8 @@ public class SubstringDemo {
         System.out.println(first);
         String capDocType = subStr.charAt(0) + subStr.substring(1).toLowerCase();
         System.out.println(capDocType);
+
+        String myStr = "VA";
+        System.out.println(myStr.substring(0, 2));
     }
 }
